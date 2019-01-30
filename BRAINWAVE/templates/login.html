@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    login
+{% endblock %}
+
+
+{% block main %}
+            <h3><center>Log In</center></h3>
+
+            <form action="{{ url_for('login') }}" method="post">
+                <fieldset class="form-group">
+
+                    <!--Requires username-->
+                    <div class="container">
+                        <input autocomplete="off" autofocus class="form-control" name="username" placeholder="Username" type="text"/>
+                    </div>
+
+                    <!--Requires password-->
+                    <div class="container">
+                        <input class="form-control" name="password" placeholder="Password" type="password"/>
+                    </div>
+                    <div class=>
+                        <center><button class="btn btn-default" type="submit">Login</button></center>
+                    </div>
+                </fieldset>
+            </form>
+
+
+        <!--If user already has an account, continue to register-->
+        <p>
+            <h4><center>Nog geen account?</center></h4>
+            <h4><center><a href="register">Registreer</a></center></h4>
+        </p>
+
+
+
+
+
+
+{% endblock %}

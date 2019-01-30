@@ -1,0 +1,56 @@
+
+{% block main %}
+<!--The mode ranked will be with one player-->
+        {% if mode == "ranked" %}
+        <table>
+          <TR>
+             <TD><h2>Correct answer</h2></TD>
+             <TD><h2>Your answer</h2></TD>
+             <TD><h2>Correct</h2></TD>
+             <h1>Jouw score: {{ Score }}</h1>
+          </TR>
+            {% for x in range(10) %}
+
+            <!--Shows the correct answer, the users answer, and score-->
+            <TR>
+               <TD>{{Answers['ca'+x|string]}}</TD>
+               <TD>{{Answers['a'+x|string]}}</TD>
+               <TD>{{Answers['ca'+x|string]==Answers['a'+x|string]}}</TD>
+            </TR>
+            {% endfor %}
+        </table>
+        {% endif %}
+
+        <!--The mode local will be with two players-->
+        {% if mode == "local" %}
+        <table>
+            <h1> De eindstand tussen Player 1 met {{ Score1 }} punt(en) en Player 2 met {{ Score2 }} punt(en)</h1>
+          <TR>
+             <TD><h2>Correct answer</h2></TD>
+             <TD><h2>Answer player 1</h2></TD>
+             <TD><h2>Correct</h2></TD>
+             <TD><h2>Answer player 2</h2></TD>
+             <TD><h2>Correct</h2></TD>
+          </TR>
+            {% for x in range(10) %}
+
+            <!--Shows the correct answer, the users answer, and score-->
+            <TR>
+               <TD>{{Answers['ca'+x|string]}}</TD>
+               <TD>{{Answers['a'+x|string+"p1"]}}</TD>
+               <TD>{{Answers['ca'+x|string]==Answers['a'+x|string+"p1"]}}</TD>
+               <TD>{{Answers['a'+x|string+"p2"]}}</TD>
+               <TD>{{Answers['ca'+x|string]==Answers['a'+x|string+"p2"]}}</TD>
+            </TR>
+            {% endfor %}
+
+        </table>
+            {% if Score1 > Score2 %}
+            <center><h1>Player 1 wint!</h1></center>
+                {% elif Score2 > Score1 %}
+                <center><h1>Player 2 wint!</h1></center>
+                {% elif Score2 == Score1 %}
+                <center><h1>Een gelijkspel!</h1></center>
+            {% endif %}
+        {% endif %}
+{% endblock %}

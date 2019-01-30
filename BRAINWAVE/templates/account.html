@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Account
+{% endblock %}
+
+
+{% block main %}
+<form action="{{ url_for('account') }}" method="POST">
+
+    <!--Shows username-->
+    <h3><center>Welkom {{gebruikersnaam}}, op jouw persoonlijke pagina! Wat leuk dat je de Brainwave vereniging gejoined bent!</center></h3>
+    <h4><center>Bekijk hier uw scores</center></h4>
+        <center>
+            <button type="button" value="0" class="btn btn-primary btn-lg active">Alle Categorieën</button>
+            <button type="button" value="11" class="btn btn-primary btn-lg active">Film</button>
+            <button type="button" value="12" class="btn btn-primary btn-lg active">Muziek</button>
+            <button type="button" value="26" class="btn btn-primary btn-lg active">Beroemdheden</button>
+            <button type="button" value="21" class="btn btn-primary btn-lg active">Sport</button>
+            <button type="button" value="15" class="btn btn-primary btn-lg active">Games</button>
+        </center>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Score</th>
+                <th>Datum (GMT+0)</th>
+            </tr>
+        {% for i in scores %}
+        <tbody>
+            <!--Shows score, date and username-->
+            <tr>
+                <td>{{ i.score }}</td>
+                <td>{{ i.timestamp }}</td>
+            </tr>
+        </tbody>
+        {% endfor %}
+</form>
+<script>
+
+  // Can see the scores of all categories, and each one seperately
+  $("button").click(function() {
+    $(this).attr("disabled", "disabled");
+    var val = $(this).val()
+
+    $.ajax({
+      type : 'POST',
+      url : "{{url_for('account')}}",
+      data: JSON.stringify({
+            category:val
+      }, null, '\t'),
+      contentType: 'application/json;charset=UTF-8',
+      success:function(response){
+          location.reload();
+          document.write(response);
+      }
+    });
+  });
+</script>
+{% endblock %}

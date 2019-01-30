@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <head>
+
+        <!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta -->
+        <meta charset="utf-8"/>
+        <meta content="initial-scale=1, width=device-width" name="viewport"/>
+
+        <!-- documentation at http://getbootstrap.com/, alternative themes at https://www.bootstrapcdn.com/bootswatch/ -->
+                <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+
+        <link href="{{ url_for('static', filename='stylesheet.css') }}" rel="stylesheet"/>
+
+        <title>Brainwave {% block title %}{% endblock %}</title>
+
+    </head>
+
+     <body>
+        <!-- Header -->
+        <header>
+            <!-- Navbar -->
+            <nav class="navbar navbar-inverse">
+              <div class="container-fluid">
+                <div class="navbar-header">
+                  <a class="navbar-brand" href="/">Brainwave</a>
+                </div>
+                {% if session.user_id %}
+                <ul class="nav navbar-nav">
+                  <li><a href="speelpagina">Speel</a></li>
+                  <li><a href="scoreOnline">Score</a></li>
+                  <li><a href="spelregels">Regels</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                  <li><a href="account">Account</a></li>
+                  <li><a href="logout">Log uit</a></li>
+                </ul>
+                {%else %}
+                  <ul class="nav navbar-nav">
+                  <!--Shows a message if a player has not logged in (yet)-->
+                  <li> <a href="#" data-toggle="popover"
+                  data-content="Let op! Als je doorgaat zonder in te loggen, worden je scores niet opgeslagen!
+                  <a href='speelpaginaoffline' title='test add link'>Toch door gaan</a>">Speel</a>
+                </li>
+
+
+
+
+
+
+                  <li><a href="scoreOnline">Score</a></li>
+                  <li><a href="spelregels">Regels</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                  <li><a href="login">Login</a></li>
+                  <li><a href="register">Registreer</a></li>
+                </ul>
+                {% endif %}
+              </div>
+           </div>
+        </nav>
+            {% if get_flashed_messages() %}
+            <header>
+            <div class="alert alert-info" role="alert">
+            { get_flashed_messages() | join(" ") }}
+            </div>
+            </header>
+            {% endif %}
+
+            <main>
+            {% block main %}{% endblock %}
+            </main>
+        </div>
+
+          <script>
+              $(document).ready(function(){
+              $('[data-toggle="popover"]').popover({html:true});
+              });
+          </script>
+
+
+    </body>
+</html>

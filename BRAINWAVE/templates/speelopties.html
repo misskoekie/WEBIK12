@@ -1,0 +1,79 @@
+<link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.6.3/css/all.css' integrity='sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/' crossorigin='anonymous'>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+
+{% extends "layout.html" %}
+
+{% block title %}
+  speelopties
+{% endblock %}
+
+
+{% block main %}
+
+    <div>
+        <center><h1>Kies een categorie of kies voor de Quickplay en krijg een mix van alle categorieën!!</h1></center>
+    </div>
+
+    <!-- Allows a user to select a category from which he wants to answer questions-->
+    <div>
+        <p class="icon">
+            <div align="middle">
+                <i class='fas fa-desktop' style='font-size:24px'></i>
+                <button type="button" value="11" class="btn btn-primary btn-lg active" onclick=""aria-pressed="true" style="width:200px" value="btn">Film</a></center>
+                </div>
+            </div>
+        </p>
+        <p class='icon'>
+            <div align="middle">
+                <i class='fas fa-headphones' style='font-size:24px'></i>
+                <button type="button" value="12" class="btn btn-primary btn-lg active" aria-pressed="true" style="width:200px" value="btn">Muziek</a>
+            </div>
+        </p>
+        <p class='icon'>
+            <div align="middle">
+                <i class='far fa-grin-squint' style='font-size:24px'></i>
+                <button type="button" value="26" class="btn btn-primary btn-lg active" aria-pressed="true" style="width:200px" value="btn">Beroemdheden</a>
+            </div>
+        </p>
+        <p class='icon'>
+            <div align="middle">
+                <i class='fas fa-basketball-ball' style='font-size:24px'></i>
+                <button type="button" value="21" class="btn btn-primary btn-lg active" aria-pressed="true" style="width:200px" value="btn">Sport</a>
+            </div>
+        </p>
+        <p class='icon'>
+            <div align="middle">
+                <i class='far fa-keyboard' style='font-size:24px'></i>
+                <button type="button" value="15" class="btn btn-primary btn-lg active" aria-pressed="true" style="width:200px" value="btn">Games</a>
+            </div>
+        </p>
+        <p class='icon'>
+            <div align="middle">
+                <i class='far fa-play-circle' style='font-size:24px'></i>
+                <button type="button" value="-1" class="btn btn-primary btn-lg active" aria-pressed="true" style="width:200px" value="btn">Quickplay</a>
+            </div>
+        </p>
+    </div>
+
+
+<script>
+
+  // Assures that the questions will be displayed on one page without reloading the page
+  $("button").click(function() {
+    $(this).attr("disabled", "disabled");
+    var val = $(this).val()
+
+    $.ajax({
+      type : 'POST',
+      url : "{{url_for('speelopties')}}",
+      data: JSON.stringify({
+            category:val,
+            "game":'ranked',
+      }, null, '\t'),
+      contentType: 'application/json;charset=UTF-8',
+      success:function(response){ document.write(response); }
+    });
+  });
+</script>
+
+{% endblock %}

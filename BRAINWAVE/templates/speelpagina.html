@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+
+{% block title %}
+  speelpagina
+{% endblock %}
+
+{% block main %}
+
+      <link href="{{ url_for('static', filename='stylesheet.css') }}" rel="stylesheet"/>
+
+      <div class = "speelpagina" ><h1>Welkom bij <i>Brainwave</i>, kies een van de spelopties om te beginnen!</h1></div>
+
+      <!--Choose local or online mode to begin the game-->
+      <div class="row" id = "keuzeblok">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-2"><a href="javascript:void(null);"id="localPlay"><img src="static/images/local.png" class="center-image"></div>
+        <div class="col-sm-2"></div>
+        <div class="col-sm-2"><a href="speelopties"><img src="static/images/ranked.png" class="center-image"></a></div>
+        <div class="col-sm-3"></div>
+
+      </div>
+<script>
+  $("#localPlay").click(function() {
+    $(this).attr("disabled", "disabled");
+    $.ajax({
+      type : 'POST',
+      url : "{{url_for('speelopties')}}",
+      data: JSON.stringify({
+            category:"-1",
+            "game":'local'
+      }, null, '\t'),
+      contentType: 'application/json;charset=UTF-8',
+      success:function(response){
+        location.reload();
+        document.write(response); }
+    });
+  });
+</script>
+
+
+{% endblock %}

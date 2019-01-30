@@ -1,0 +1,220 @@
+{% extends "layout.html" %}
+
+{% block title %}
+  Eindresultaat
+{% endblock %}
+
+
+{% block main %}
+
+
+
+<form name = 'answers' id="questionForm1"  method="post">
+
+<h1> {{r1}} <p id="redText">player 2</p>--------------------- <p id="blueText">player 1</p> is aan de beurt.</h1>
+<div>
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <!-- Carousel indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            {%  for x in range(1, questions|length ) %}
+            <li data-target="#myCarousel" data-slide-to={{x}}></li>
+            {% endfor %}
+        </ol>
+        <!-- Wrapper for carousel items -->
+        <div class="carousel-inner">
+            <div class="item active">
+              <div class="card" id='QuestionCard'>
+                  <div class="card-body">
+                  <h5 class="card-title">{{questions[0]["category"]}}</h5>
+                  <p class="card-text"> {{questions[0]["question"]}}</p>
+                </div>
+
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item"><input type="radio" name={{"answer1p"+0|string}} value="{{questions[0]['random_answers'][0]}}"> A <text>{{questions[0]["random_answers"][0]}}</text></li>
+                  <li class="list-group-item"><input type="radio" name={{"answer1p"+0|string}} value="{{questions[0]['random_answers'][1]}}"> B <text>{{questions[0]["random_answers"][1]}}</text></li>
+                  <li class="list-group-item"><input type="radio" name={{"answer1p"+0|string}} value="{{questions[0]['random_answers'][2]}}"> C <text>{{questions[0]["random_answers"][2]}}</text></li>
+                  <li class="list-group-item"><input type="radio" name={{"answer1p"+0|string}} value="{{questions[0]['random_answers'][3]}}"> D <text>{{questions[0]["random_answers"][3]}}</text></li>
+
+                </ul>
+              </div>
+            </div>
+            {%  for x in range(1,questions|length ) %}
+            <div class="item">
+
+                <div class="card" id='QuestionCard'>
+                    <div class="card-body">
+                    <h5 class="card-title">{{questions[x]["category"]}}</h5>
+                    <p class="card-text"> {{questions[x]["question"]}}</p>
+                  </div>
+
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><input type="radio" name={{"answer1p"+x|string}} value="{{questions[x]['random_answers'][0]}}"> A <text>{{questions[x]["random_answers"][0]}}</text></li>
+                    <li class="list-group-item"><input type="radio" name={{"answer1p"+x|string}} value="{{questions[x]['random_answers'][1]}}"> B <text>{{questions[x]["random_answers"][1]}}</text></li>
+                    <li class="list-group-item"><input type="radio" name={{"answer1p"+x|string}} value="{{questions[x]['random_answers'][2]}}"> C <text>{{questions[x]["random_answers"][2]}}</text></li>
+                    <li class="list-group-item"><input type="radio" name={{"answer1p"+x|string}} value="{{questions[x]['random_answers'][3]}}"> D <text>{{questions[x]["random_answers"][3]}}</text></li>
+
+                  </ul>
+              </div>
+
+
+            </div>
+            {% endfor %}
+
+        </div>
+        <!-- Carousel controls -->
+        <a class="carousel-control left" href="#myCarousel" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+        <a class="carousel-control right" href="#myCarousel" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+        </a>
+    </div>
+</div>
+
+
+    <center><button type="button" id="button1p" class="btn btn-default">Ik heb alle vragen beantwoord!</button></center>
+
+ </form>
+
+ <form name = 'answers' id="questionForm2"  method="post" style="display: none;">
+<h1> {{r2}} <p id="blueText">player 1</p>--------------------- <p id="redText">player 2</p> is aan de beurt.</h1>
+ <div>
+     <div id="myCarousel2" class="carousel slide" data-ride="carousel">
+         <!-- Carousel indicators -->
+         <ol class="carousel-indicators">
+             <li data-target="#myCarousel2" data-slide-to="0" class="active"></li>
+             {%  for x in range(1, questions|length ) %}
+             <li data-target="#myCarousel2" data-slide-to={{x}}></li>
+             {% endfor %}
+         </ol>
+         <!-- Wrapper for carousel items -->
+         <div class="carousel-inner">
+             <div class="item active">
+               <div class="card" id='QuestionCard'>
+                   <div class="card-body">
+                   <h5 class="card-title">{{questions[0]["category"]}}</h5>
+                   <p class="card-text"> {{questions[0]["question"]}}</p>
+                 </div>
+
+                 <!--Shows 4 possible answers-->
+                 <ul class="list-group list-group-flush">
+                   <li class="list-group-item"><input type="radio" name={{"answer2p"+0|string}} value="{{questions[0]['random_answers'][0]}}"> A <text>{{questions[0]["random_answers"][0]}}</text></li>
+                   <li class="list-group-item"><input type="radio" name={{"answer2p"+0|string}} value="{{questions[0]['random_answers'][1]}}"> B <text>{{questions[0]["random_answers"][1]}}</text></li>
+                   <li class="list-group-item"><input type="radio" name={{"answer2p"+0|string}} value="{{questions[0]['random_answers'][2]}}"> C <text>{{questions[0]["random_answers"][2]}}</text></li>
+                   <li class="list-group-item"><input type="radio" name={{"answer2p"+0|string}} value="{{questions[0]['random_answers'][3]}}"> D <text>{{questions[0]["random_answers"][3]}}</text></li>
+
+                 </ul>
+               </div>
+             </div>
+             {%  for x in range(1,questions|length ) %}
+             <div class="item">
+
+                 <div class="card" id='QuestionCard'>
+                     <div class="card-body">
+                     <h5 class="card-title">{{questions[x]["category"]}}</h5>
+                     <p class="card-text"> {{questions[x]["question"]}}</p>
+                   </div>
+
+                   <!--Shows 4 possible answers-->
+                   <ul class="list-group list-group-flush">
+                     <li class="list-group-item"><input type="radio" name={{"answer2p"+x|string}} value="{{questions[x]['random_answers'][0]}}"> A <text>{{questions[x]["random_answers"][0]}}</text></li>
+                     <li class="list-group-item"><input type="radio" name={{"answer2p"+x|string}} value="{{questions[x]['random_answers'][1]}}"> B <text>{{questions[x]["random_answers"][1]}}</text></li>
+                     <li class="list-group-item"><input type="radio" name={{"answer2p"+x|string}} value="{{questions[x]['random_answers'][2]}}"> C <text>{{questions[x]["random_answers"][2]}}</text></li>
+                     <li class="list-group-item"><input type="radio" name={{"answer2p"+x|string}} value="{{questions[x]['random_answers'][3]}}"> D <text>{{questions[x]["random_answers"][3]}}</text></li>
+
+                   </ul>
+               </div>
+
+
+             </div>
+             {% endfor %}
+
+         </div>
+         <!-- Carousel controls -->
+         <a class="carousel-control left" href="#myCarousel2" data-slide="prev">
+             <span class="glyphicon glyphicon-chevron-left"></span>
+         </a>
+         <a class="carousel-control right" href="#myCarousel2" data-slide="next">
+             <span class="glyphicon glyphicon-chevron-right"></span>
+         </a>
+     </div>
+ </div>
+
+
+     <center><button type="button" id="buttonP2" class="btn btn-default">Klaar!</button></center>
+
+  </form>
+
+<script>
+
+
+  // Ensures that when the first player finished the questions, the same questions pop up for the second player
+  $(function() {
+    $("#questionForm2").hide();
+  })
+
+  // Hides the first player form
+  $("#button1p").click(function(){
+    $("#questionForm1").hide();
+    $("#questionForm2").show();
+  })
+
+
+  $("#buttonP2").click(function(){
+
+  // Shows questions one by one
+  $.ajax({
+    type : 'POST',
+    url : "{{url_for('eindresultaat')}}",
+    data: JSON.stringify({
+    "game": "local",
+    "ca0": "{{questions[0]['correct_answer']}}",
+    "ca1": "{{questions[1]['correct_answer']}}",
+    "ca2": "{{questions[2]['correct_answer']}}",
+    "ca3": "{{questions[3]['correct_answer']}}",
+    "ca4": "{{questions[4]['correct_answer']}}",
+    "ca5": "{{questions[5]['correct_answer']}}",
+    "ca6": "{{questions[6]['correct_answer']}}",
+    "ca7": "{{questions[7]['correct_answer']}}",
+    "ca8": "{{questions[8]['correct_answer']}}",
+    "ca9": "{{questions[9]['correct_answer']}}",
+    "a0p1" : $('input[name="answer1p0"]:checked').val(),
+    "a1p1" : $('input[name="answer1p1"]:checked').val(),
+    "a2p1" : $('input[name="answer1p2"]:checked').val(),
+    "a3p1" : $('input[name="answer1p3"]:checked').val(),
+    "a4p1" : $('input[name="answer1p4"]:checked').val(),
+    "a5p1" : $('input[name="answer1p5"]:checked').val(),
+    "a6p1" : $('input[name="answer1p6"]:checked').val(),
+    "a7p1" : $('input[name="answer1p7"]:checked').val(),
+    "a8p1" : $('input[name="answer1p8"]:checked').val(),
+    "a9p1" : $('input[name="answer1p9"]:checked').val(),
+
+    "a0p2" : $('input[name="answer2p0"]:checked').val(),
+    "a1p2" : $('input[name="answer2p1"]:checked').val(),
+    "a2p2" : $('input[name="answer2p2"]:checked').val(),
+    "a3p2" : $('input[name="answer2p3"]:checked').val(),
+    "a4p2" : $('input[name="answer2p4"]:checked').val(),
+    "a5p2" : $('input[name="answer2p5"]:checked').val(),
+    "a6p2" : $('input[name="answer2p6"]:checked').val(),
+    "a7p2" : $('input[name="answer2p7"]:checked').val(),
+    "a8p2" : $('input[name="answer2p8"]:checked').val(),
+    "a9p2" : $('input[name="answer2p9"]:checked').val(),
+  }, null, '\t'),
+    contentType: 'application/json;charset=UTF-8',
+    success:function(response){
+      $("#questionForm2").hide();
+      document.write(response);
+      }
+   });
+  });
+
+
+  // Make it possible to show questions next to each other on the same page
+  $('.carousel').carousel({
+      pause: true,
+      interval: false
+  });
+
+</script>
+  {% endblock %}

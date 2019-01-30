@@ -1,0 +1,65 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Account
+{% endblock %}
+
+
+{% block main %}
+    <form action="{{ url_for('scoreOnline') }}" method="post">
+        <p>
+            <h3><center>Online Leaderboard</center></h3>
+        </p>
+        <p>
+            <h4><center>Bekijk hier de scores van spelers over de hele wereld!</center></h4>
+        </p>
+        <center>
+            <button type="button" value="0" class="btn btn-primary btn-lg active">Alle Categorieën</button>
+            <button type="button" value="11" class="btn btn-primary btn-lg active">Film</button>
+            <button type="button" value="12" class="btn btn-primary btn-lg active">Muziek</button>
+            <button type="button" value="26" class="btn btn-primary btn-lg active">Beroemdheden</button>
+            <button type="button" value="21" class="btn btn-primary btn-lg active">Sport</button>
+            <button type="button" value="15" class="btn btn-primary btn-lg active">Games</button>
+        </center>
+
+    <!--see how everyone in the world did, by displaying username, score and time-->
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Gebruikersnaam</th>
+                <th>Score</th>
+                <th>Datum (GMT+0) </th>
+            </tr>
+        </thead>
+        {% for i in scoreOnline %}
+        <tbody></tbody>
+            <tr>
+                <td>{{ i.username }}</td>
+                <td>{{ i.score }}</td>
+                <td>{{ i.timestamp }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    <script>
+
+
+  // Can see the scores of all categories, and each one seperately
+  $("button").click(function() {
+    $(this).attr("disabled", "disabled");
+    var val = $(this).val()
+
+    $.ajax({
+      type : 'POST',
+      url : "{{url_for('scoreOnline')}}",
+      data: JSON.stringify({
+            category:val
+      }),
+      contentType: 'application/json;charset=UTF-8',
+      success:function(response){
+          location.reload();
+          document.write(response);
+      }
+    });
+  });
+</script>
+{% endblock %}
