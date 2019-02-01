@@ -11,6 +11,13 @@
 > Stef Bardoel, 11700246.
 
 ----
+## Link naar productvideo
+
+https://youtu.be/djnKN959dRg
+
+
+
+----
 ## Samenvatting
 
 Het doel van de trivia is op een leuke en competitieve manier kennis bij te brengen.  Bezoekers kunnen via een inlogpagina de eerder behaalde scores opslaan en later terugkijken. Op deze manier is de persoonlijke voortgang te allen tijde in te zien. Daarnaast is het mogelijk de score te vergelijken met andere spelers waardoor de trivia erg competitief kan worden.
